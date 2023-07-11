@@ -1,0 +1,213 @@
+
+
+.logo-menu-superior {
+    height: 40px;
+}
+
+.link-bloque {
+    display: inline-block; /* Mostrar como bloque en línea */
+    text-decoration: none !important; /* Eliminar subrayado del enlace */
+    color: inherit; /* Heredar el color del texto */
+    text-decoration: lin;
+}
+  
+
+
+.error-message {
+    color: red !important;
+    font-weight: bold !important;
+}
+
+th {
+    vertical-align: top;
+    background-color: lightgray !important;
+}
+
+.table-hover .letra-boleta-anulada td {
+    color: red !important;
+    font-weight: bold !important;
+}
+  
+
+
+
+#admin-producto-imagen {
+    max-width: 350px;
+    max-height: 350px;
+    padding: 3px;
+    border: 2px solid gray;
+}
+
+#admin-bodega-imagen {
+    max-width: 150px;
+    max-height: 150px;
+    padding: 3px;
+    border: 2px solid gray;
+}
+
+#registrarme-imagen {
+    max-width: 150px;
+    max-height: 150px;
+    padding: 3px;
+    border: 2px solid gray;
+}
+  
+.ancho-150px {
+    width: 150px;
+}
+
+.menu-superior{
+    background: rgb(8, 13, 17);
+    width: 100%;
+    position:initial;
+}
+
+.error{
+    color: red;
+    font-weight: bolder;
+}
+
+.menu-superior ul {
+    display: inline;
+    margin-right: 20px; 
+    list-style: none;
+    overflow: hidden; 
+}
+.menu-superior ul li {
+    float:right; 
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 18px;
+}
+
+.menu-superior ul li a {
+
+    display: block; 
+    padding: 10px;
+    color: #fcfcfc;
+    text-decoration: none;
+}
+.menu-superior ul li:hover {
+    background: lightsteelblue;
+}
+
+.producto {
+    width: 80%;
+}
+
+.miembro{
+    width: 100%;
+    box-align :end;  
+
+}
+p{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    
+
+}
+.contenido{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px; 
+    justify-content: center;
+    
+}
+.regi{
+    text-align: center;
+
+}
+
+
+
+.form-control{
+    width:50%;
+    margin:0 auto;
+}
+.precio{
+    text-decoration:line-through;
+}
+.oferta{
+    color: rgb(81, 156, 104);
+}
+.namecarro{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.regis{
+    text-align: center;
+    content:none;
+    flex-direction: column;
+}
+.fondo{
+    background-color:lightsteelblue;
+}
+.titulo{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    
+
+}
+.row{
+    justify-content: center
+}
+
+.namedetalle{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+}
+.table{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    border: 5px solid rgb(138, 173, 238) ;
+
+}
+
+
+.nosotros {
+    width: 80%;
+    text-align: center;
+    height: auto;
+    margin-top: 50px;
+    margin-left: 80px;
+}
+
+.texto-imagen{
+    text-align: center;
+}
+
+.texto-imagen ul{
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+    margin: 0 20px;
+    padding: 5px;
+    font-size: large;
+}
+
+.texto-imagen li{
+    margin: 0 10px;
+}
+
+
+.pie-pagina {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: rgb(221, 231, 243);
+    border: 1px solid black;
+    padding: 10px;
+}  
+.pie-pagina ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}  
+.pie-pagina li {
+    margin: 0 10px;
+}
+.vistos{
+    width: 10%
+
+
+}

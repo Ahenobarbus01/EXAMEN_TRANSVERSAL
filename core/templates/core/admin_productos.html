@@ -1,0 +1,107 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% load custom_filters %}
+
+{% block stylesheet %}
+
+    <link href="{% static 'core/css/producto.css'%}" rel="stylesheet">
+
+{% endblock stylesheet %}
+
+{% block content %}
+
+    <h1>Mantenedor de productos</h1>
+
+    <form method="POST" enctype="multipart/form-data" id="formulario">
+
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <div class="form-row">
+                    {% for campo in formulario %}
+                        <div class="form-group row mb-2">
+                            <label for="{{ campo.id_for_label }}" class="col-sm-5 col-form-label">
+                                {{ campo.label }}
+                            </label>
+                            <div class="col-sm-7">
+                                {{ campo }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                {% if formulario.imagen.value %}
+                    <img id="imagen-producto" src="/media/{{ formulario.imagen.value }}" alt="Vista previa de la imagen">
+                    <input type="hidden" name="nombre_archivo" value="{{ formulario.imagen.value }}">
+                {% else %}
+                    <img id="imagen-producto" src="{% static 'core/images/sin-imagen.png' %}" alt="Vista previa de la imagen">
+                    <input type="hidden" name="nombre_archivo" name="id_nombre_archivo" value="">
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="mt-2 mb-3">
+            <input type="submit" class="btn btn-primary ancho-boton" id="id_guardar" value="Guardar">
+            
+            <a class="btn btn-success ancho-boton" href="{% url 'admin_productos' 'ins' -1 %}"> Nuevo </a>
+            
+            {% if id != '-1' %}
+                <a class="btn btn-danger ancho-boton" href="{% url 'admin_productos' 'del' id %}"> Eliminar </a>
+            {% endif %}
+        </div>
+
+        {% if mensaje %}
+            <div id="mensaje-formulario" class="alert alert-danger" role="alert">{{ mensaje }}</div>
+        {% endif %}
+        
+    </form>
+    
+    {% if productos %}
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th> ID </th>
+                    <th> Categoría </th>
+                    <th> Nombre </th>
+                    <th> Descripción </th>
+                    <th> Precio </th>
+                    <th> %Subs </th>
+                    <th> %Oferta </th>
+                    <th> Imagen </th>
+                    <th> Editar </th>
+                    <th> Eliminar </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in productos %}
+                    <tr>
+                        <td> {{ producto.id }} </td>
+                        <td> {{ producto.categoria }} </td>
+                        <td> {{ producto.nombre }} </td>
+                        <td> {{ producto.descripcion }} </td>
+                        <td> {{ producto.precio|formatear_dinero }} </td>
+                        <td> {{ producto.descuento_subscriptor|formatear_porcentaje }} </td>
+                        <td> {{ producto.descuento_oferta|formatear_porcentaje }} </td>
+                        <td>
+                            <img src="/media/{{ producto.imagen }}" class="producto-sm" alt="">
+                        </td>
+                        <td>
+                            <a href="{% url 'admin_productos' 'upd' producto.id %}" class="btn btn-primary btn-sm boton_chico"> Editar </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'admin_productos' 'del' producto.id %}" class="btn btn-danger btn-sm boton_chico"> Eliminar </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock content %}
+
+{% block script %}
+  <script src="{% static 'core/js/producto.js' %}"></script>
+{% endblock script %}

@@ -1,0 +1,70 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+  <body class="fondo">
+    
+  <h1> Registro de cliente </h1>
+
+  <form method="POST" enctype="multipart/form-data" id="form">
+
+    {% csrf_token %}
+    
+    <div class="row justify-content-center ">
+      <div class="col-sm-12 col-md-6">
+        <div class="form-row">
+          {% for field in form %}
+            <div class="form-group row mb-2">
+              <label for="{{ field.id_for_label }}" class="col-sm-5 col-form-label">
+                {{ field.label }}
+              </label>
+              <div class="col-sm-7">
+                {{ field }}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      
+      <div class="col-sm-12 col-md-6">
+        
+        {% if form.imagen.value %}
+          <img id="registrarme-imagen" src="/media/{{ form.imagen.value }}">
+        {% else %}
+          <img id="registrarme-imagen" src="{% static 'core/images/sin-imagen.png' %}">
+        {% endif %}
+
+        {% if form.errors %}
+          <br>
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ form.errors }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endif %}
+
+      </div>
+    </div>
+
+    <div class="mt-2 mb-3">
+      <button type="submit" class="btn btn-primary ancho-150px" style="background-color: black; border-color: black;"> Registrarme </button>
+      <button type="reset" class="btn btn-primary ancho-150px" style="background-color: red; border-color: black;"> Limpiar </button>
+    </div>
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
+    {% endif %}
+
+  </form>
+</body>
+
+{% endblock content %}
+
+{% block script %}
+  <script src="{% static 'core/js/registrarme.js' %}"></script>
+{% endblock script %}

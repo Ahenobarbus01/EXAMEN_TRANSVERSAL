@@ -1,0 +1,103 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+
+  <h1> Mantenedor de productos </h1>
+
+  <form method="POST" enctype="multipart/form-data" id="form">
+
+    {% csrf_token %}
+
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <div class="form-row">
+          {% for field in form %}
+            <div class="form-group row mb-2">
+              <label for="{{ field.id_for_label }}" class="col-sm-5 col-form-label">
+                {{ field.label }}
+              </label>
+              <div class="col-sm-7">
+                {{ field }}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6">
+        {% if form.imagen.value %}
+          <img id="admin-producto-imagen" src="/media/{{ form.imagen.value }}">
+        {% else %}
+          <img id="admin-producto-imagen" src="{% static 'core/images/sin-imagen.png' %}">
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="mt-2 mb-3">
+      <input type="submit" class="btn btn-primary ancho-150px" value="Guardar">
+      <a class="btn btn-success ancho-150px" href="{% url 'mantenedor_de_productos' 'crear' '0' %}"> Nuevo </a>
+      {% if form.instance.id %}
+        <a class="btn btn-danger ancho-150px" href="{% url 'mantenedor_de_productos' 'eliminar' form.instance.id %}"> Eliminar </a>
+      {% endif %}
+    </div>
+
+  </form>
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  {% if productos %}
+    <table id="tabla-principal" class="table table-hover">
+        <thead>
+            <tr>
+                <th> ID </th>
+                <th> Categoría </th>
+                <th> Nombre </th>
+                <th> Descripción </th>
+                <th> Precio </th>
+                <th> %Subs </th>
+                <th> %Oferta </th>
+                <th> Imagen </th>
+                <th> Editar </th>
+                <th> Eliminar </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for producto in productos %}
+                <tr>
+                    <td> {{ producto.id }} </td>
+                    <td> {{ producto.categoria }} </td>
+                    <td> {{ producto.nombre }} </td>
+                    <td> {{ producto.descripcion }} </td>
+                    <td> {{ producto.precio|formatear_dinero }} </td>
+                    <td> {{ producto.descuento_subscriptor|formatear_porcentaje }} </td>
+                    <td> {{ producto.descuento_oferta|formatear_porcentaje }} </td>
+                    <td>
+                        <img src="/media/{{ producto.imagen }}" class="producto-sm" alt="">
+                    </td>
+                    <td>
+                        <a href="{% url 'mantenedor_de_productos_productos' 'actualizar' producto.id %}" class="btn btn-primary btn-sm boton_chico"> Editar </a>
+                    </td>
+                    <td>
+                        <form method="delete">
+                            <a href="{% url 'mantenedor_de_productos_productos' 'eliminar' producto.id %}" class="btn btn-danger btn-sm boton_chico"> Eliminar </a>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+  {% endif %}
+
+{% endblock content %}
+
+{% block script %}
+  <script src="{% static 'core/js/mantenedor_de_productos.js' %}"></script>
+{% endblock script %}

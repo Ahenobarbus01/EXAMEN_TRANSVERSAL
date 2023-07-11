@@ -1,0 +1,82 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>compra</title>
+    <link rel="icon" href="{% static 'core/img/logo4.jpg' %}">
+    <link rel="stylesheet" href="{% static 'core/css/style.css'%}">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous">
+  </head>
+
+    <h1>Ficha de producto</h1>
+<body class="fondo">
+    <form method="post" id="formulario-ficha">
+
+        {% csrf_token %}
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3" >
+
+                  <div class=" card mb-2  rounded-5 text-secondary  shadow">
+                    <img src="/media/{{ imagen }}" width="100%">
+                </div>
+                </div>
+                
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+
+                    <div class=" card mb-1 p-5 rounded-5  text-secondary shadow" >
+
+                        <div class="card-body fw-bold"> 
+                        <h2 class="fw-bold mb-3">
+                        {{ nombre }}
+                    </h2>
+                    <h4 >
+                        {{ html_estado|safe }}
+                    </h4>
+                    <h2 class="mb-3">
+                        {{ html_precio|safe }}
+                    </h2>
+                    <h4 class="mb-4">
+                        <div class="mb-3">
+                            Descripción:
+                        </div>
+                        {{ descripcion }}
+                    </h4>
+                    <p>
+                        {{ html_stock|safe }}
+                    </p>
+                    <input type="hidden" id="accion">
+                    <button class="btn btn-primary ancho-150px" value=""> Comprar ahora </button>
+                    <a href="{% url 'agregar_producto_al_carrito' id %}" class="btn btn-secondary ancho-150px"> Agregar al carrito </a>
+
+
+                        </div>
+                       
+
+
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+</body>
+    
+
+{% endblock content %}
+
+{% block script %}
+    <script src="{% static 'core/js/ficha.js' %}"></script>
+{% endblock script %}

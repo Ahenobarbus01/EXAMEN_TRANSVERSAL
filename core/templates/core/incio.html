@@ -1,0 +1,169 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+
+
+  <!doctype html>
+  <html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PetShop</title>
+    <link rel="icon" href="{% static 'core/img/logo4.jpg' %}">
+    
+    <link rel="stylesheet" href="{% static 'core/css/base.css'%}">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous">
+  </head>
+  <body class="fondo">
+    
+    <div class="row">
+        <div class="col">
+          <!-- Titulo -->
+          <h1 class="titulo">PetShop</h1>
+
+          <!-- Carrusel -->
+          <div id="carouselExampleIndicators" class="carousel slide">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide-to="0" class="active" aria-current="true"
+                aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="{% static 'core/img/alexi.jpg'%}" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="{% static 'core/img/foto2.jpg' %}" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="{% static 'core/img/foto3.jpg' %}" class="d-block w-100" alt="...">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button"
+              data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button"
+              data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Siguiente</span>
+            </button>
+          </div>
+          <br>
+
+
+        {% if productos %}
+          <!-- Productos -->
+         <div class="container-fluid" >
+          <div class="row">   
+            
+            
+            {% for producto in productos %}
+               
+                   
+       
+
+
+               <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                <div class=" card mb-4 box-shadow">
+                  <div class="card-body">
+
+                    <a href="" class="link-bloque">
+                      
+                      <img class="producto" class="inicio-producto-imagen" class=" card-img-top "
+                        src="/media/{{ producto.imagen }}" alt=""> 
+                      
+                      </a>
+                    
+                
+                 <h5 class="card-title">
+                  
+                  {{  producto.nombre }} </h5>
+
+                  <h6 class = "card-title">
+                    {{ producto.html_estado|safe }} <br>
+                   {{ producto.html_precio|safe }} <br>
+                 </h6>
+
+                  
+                 <p class="card-text inicio-producto-descripcion" data-toggle="tooltip" title="{{ descripcion_producto }}">                                        
+                  {{ producto.descripcion }}
+                 <br>
+                  {{ producto.html_stock }}
+                </p> 
+
+                <a href="{% url 'ficha' producto.id %}">
+                  <button type="button" class="btn btn-primary">
+
+                    Comprar</button>
+                </a>
+                
+                <a href="{% url 'carrito' %}"> 
+                  <button type="button" class="btn btn-secondary">Agregar al
+                    carro
+
+                  </button>
+                </a>
+               
+              </div>
+               
+              </div>
+             </div>
+
+
+              {% endfor %}
+           </div>                  
+        </div>
+            {% else %}
+              <h2>No se encontraron productos</h2>
+            {% endif %}  
+              
+              
+
+      <!-- API -->
+
+      <a href="{% url 'ropa' %}"><img src="{% static 'core/img/oferta.png'%}"
+          style="width: 120px;" alt=""><br>
+        Oferta <br>
+        Por compras superiores a $20.000 ya estás concursando <br>
+        por una prenda de vestira mirá aquí los premios.
+      </a>
+
+
+      <!-- pie de la pagina -->
+      
+      <br><br><br>
+      <hr>
+     
+    
+
+
+  </body>
+         <!-- cuerpo de la pagina -->
+      
+    
+
+      {% endblock content %}
+
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+          crossorigin="anonymous"></script>
+        <script src="js/script.js"></script>
+        <script src="js/menu.js"></script>
+        <script src="js/footer.js"></script>
+    
+
+
+    </html>

@@ -1,0 +1,76 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+    
+    <h1>Boleta N° {{ boleta.nro_boleta }}</h1>
+      <img class="vistos" src="{% static 'core/img/vitos.PNG' %}  " style="width: 400px" alt="">
+    <div>
+       
+
+        Venta: {{ boleta.fecha_venta|formatear_fecha }} | Despacho: {{ boleta.fecha_despacho|formatear_fecha }} | Entrega: {{ boleta.fecha_entrega|formatear_fecha }}
+    </div>
+    
+    <table id="tabla-principal" class="table table-hover">
+        <thead>
+            <tr>
+                <th> Categoría </th>
+                <th> Producto </th>
+                <th> Precio </th>
+                <th> % Descto <br> Subscriptor </th>
+                <th> % Descto <br> Oferta </th>
+                <th> % Descto <br> Total </th>
+                <th class="text-end"> Descuentos </th>
+                <th class="text-end"> Precio a pagar </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in detalle_boleta %}
+                <tr>
+                    <td> {{ item.bodega.producto.categoria.nombre }} </td>
+                    <td> {{ item.bodega.producto.nombre }} </td>
+                    <td> {{ item.precio|formatear_dinero }} </td>
+                    <td> {{ item.descuento_subscriptor|formatear_porcentaje }} </td>
+                    <td> {{ item.descuento_oferta|formatear_porcentaje }} </td>
+                    <td> {{ item.descuento_total|formatear_porcentaje }} </td>
+                    <td class="text-end"> {{ item.descuentos|formatear_dinero }} </td>
+                    <td class="text-end"> {{ item.precio_a_pagar|formatear_dinero }} </td>
+                </tr>
+            {% endfor %}
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="fw-bold"> Precio sin IVA </td>
+                <td class="fw-bold text-end"> {{ boleta.monto_sin_iva|formatear_dinero }} </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="fw-bold"> Valor del IVA (19%) </td>
+                <td class="fw-bold text-end"> {{ boleta.iva|formatear_dinero }} </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="fw-bold"> Total a pagar </td>
+                <td class="fw-bold text-end"> {{ boleta.total_a_pagar|formatear_dinero }} </td>
+            </tr>
+        </tfoot>
+        </tbody>
+    </table>
+    
+{% endblock content %}

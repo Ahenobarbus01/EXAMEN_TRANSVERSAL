@@ -1,0 +1,63 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+    
+<body class="fondo" >
+  
+  <header>
+    <h1 style="text-align: center; padding-top: 50px;">Ingresar a la tienda</h1>
+    
+  </header>
+      
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-4 border border-3 p-4">
+        
+        <form method="POST" id="form">
+
+          {% csrf_token %} 
+          
+          {{ form.as_p }}
+
+          <div class="col text-center mb-1 ">
+            <a href="{% url 'registrarme' %}">
+              <button type="button" class="btn btn-secondary"> Registrarse</button>
+            </a>
+            <button type="button" class="btn btn-secondary">Olvidé mi contraseña</button>
+          </div>
+          
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary"> Ingresar </button>
+          </div>
+
+          <hr>
+
+         
+          
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endfor %}
+          {% endif %}
+      
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  
+</body>
+  
+
+  
+
+{% endblock content %}
+
+{% block script %}
+  <script src="{% static 'core/js/ingresar.js' %}"></script>
+{% endblock script %}

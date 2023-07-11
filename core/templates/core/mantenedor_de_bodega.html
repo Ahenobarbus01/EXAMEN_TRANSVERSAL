@@ -1,0 +1,94 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% load custom_filters %}
+
+{% block stylesheet %}
+
+{% endblock stylesheet %}
+
+{% block content %}
+
+    <h1>Mantenedor de bodega</h1>
+
+    <form method="POST" enctype="multipart/form-data" id="form">
+
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <div class="form-row">
+                    {% for field in form %}
+                        <div class="form-group row mb-2">
+                            <label for="{{ field.id_for_label }}" class="col-sm-5 col-form-label">
+                                {{ field.label }}
+                            </label>
+                            <div class="col-sm-7">
+                                {{ field  }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <img id="admin-bodega-imagen" src="{% static 'core/images/sin-imagen.png' %}">
+            </div>
+        </div>
+
+        <div class="mt-2 mb-3">
+            <button id="id_agregar" class="btn btn-primary ancho-150px" type="submit"> Agregar </button>
+            <button id="id_nuevo" class="btn btn-success ancho-150px"> Nuevo </button>
+        </div>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+    </form>
+
+    {% if productos %}
+        <table id="tabla-principal" class="table table-hover">
+            <thead>
+                <tr>
+                    <th> ID </th>
+                    <th> Categoría </th>
+                    <th> Producto </th>
+                    <th> Estado </th>
+                    <th> Imagen </th>
+                    <th> Acción </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in productos %}
+                    <tr>
+                        <td> {{ producto.bodega_id }} </td>
+                        <td> {{ producto.nombre_categoria }} </td>
+                        <td> {{ producto.nombre_producto }} </td>
+                        <td> {{ producto.estado }} </td>
+                        <td>
+                            <img src="/media/{{ producto.imagen }}" class="producto-sm" alt="">
+                        </td>
+                        <td>
+                            {% if producto.estado == 'En bodega' %}
+                                <a href="{% url 'eliminar_producto_en_bodega' producto.bodega_id %}" 
+                                    class="btn btn-danger btn-sm boton_chico"> Eliminar </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock content %}
+
+{% block script %}
+    <input type="hidden" id="url_obtener_productos" value="{% url 'obtener_productos' %}">
+    <script src="{% static 'core/js/mantenedor_de_bodega.js' %}"></script>
+{% endblock script %}
+

@@ -1,0 +1,129 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+<!doctype html>
+
+{% block content %}
+
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>PetShop</title>
+        <link rel="icon" href="img/logo4.jpg">
+        <link rel="stylesheet" href="css/style.css">
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+            crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container-fluid">
+            <!--cabecera -->
+            
+            <div id="menu-superior">
+
+            </div>
+
+            <!-- Cuerpo de la pagina -->
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <!-- Titulo -->
+                        <h2>PetShop</h2>
+                        <h1>Nosotros</h1>
+                        <p class="text-justify" style="font-size: 1.2rem;">
+                            PetShop es la tienda online más completa para
+                            mascotas creada por pet lovers!. Somos la tienda en
+                            línea de mascotas con mayor variedad de productos y
+                            servicios a domicilio, contamos con más de 4.000
+                            productos (alimentos, dietas naturales, snacks,
+                            medicinas, higiene y accesorios).
+                            <br><br>
+                            Nuestro emprendimiento es sin fines de lucro, y
+                            estamos dedicados a la manutención de animales en
+                            peligro de maltrato.
+                            <br><br>
+                            Siempre estamos preocupados por la salud y bienestar
+                            de tus mascotas y las cuidamos en nuestra fundación.
+                            <br><br>
+                            Tanto tu mascota como las que acogemos son lo más
+                            importante para nosotros. Nos esforzamos día a día
+                            por dar la mejor experiencia y servicio a los pet
+                            lovers y para que a tus peluditos no les falte nada
+                            para su cuidado y salud.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                        <div class="card">
+                            <img class="card-img" src="{% static 'core/img/foto_perfil2.jpg'%}"
+                                alt="">
+                            <div class="card-body">
+                                <h5 class="card-title">Juan Perez</h5>
+                                <p class="card-text">Gerente General</p>
+                                <p class="card-text"><a
+                                        href="mailto:juan.perez@empresa.com"
+                                        style="text-decoration: underline;
+                                        color: blue;">juan.perez@empresa.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                        <div class="card">
+                            <img class="card-img" src="{% static 'core/img/foto_perfil2.jpg'%}"
+                                alt="">
+                            <div class="card-body">
+                                <h5 class="card-title">Maria Rodriguez</h5>
+                                <p class="card-text">Gerente de Recursos Humanos</p>
+                                <p class="card-text"><a
+                                        href="mailto:maria.rodriguez@empresa.com"
+                                        style="text-decoration: underline;
+                                        color: blue;">maria.rodriguez@empresa.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                        <div class="card">
+                            <img class="card-img" src="{% static 'core/img/foto_perfil2.jpg'%}"
+                                alt="">
+                            <div class="card-body">
+                                <h5 class="card-title">Pedro Gomez</h5>
+                                <p class="card-text">Atencion al cliente</p>
+                                <p class="card-text"><a
+                                        href="mailto:pedro.gomez@empresa.com"
+                                        style="text-decoration: underline;
+                                        color: blue;">pedro.gomez@empresa.com</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            
+            <!-- pie de la pagina -->
+      
+            <br><br><br>
+            <hr>
+            <div id="pie-de-pagina">
+                
+            </div>
+        </div>
+
+        <!-- Scripts -->
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+        <script src="js/script.js"></script>
+        <script src="js/menu.js"></script>
+        <script src="js/footer.js"></script>
+    </body>
+    {% endblock content %}
+</html>
